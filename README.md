@@ -1,14 +1,15 @@
 # Phonebook-web-app
 This repository provides full source code of a phonebook web app, allowing CRUD operations on contacts
 
-## Operations User can do
-- Add a contact
-- Remove a contact
-- Update a contact
-# - Search contact
-        -By name (partial name can also be searched)
-        - Add pagination with default 4 results per page
-        - Search results should be sorted alphabetically (by name).
+# Operations User can do
+     - Add a contact
+     - Remove a contact
+     - Update a contact
+
+# Search contact
+     -By name (partial name can also be searched)
+     - Add pagination with default 4 results per page
+     - Search results should be sorted alphabetically (by name).
         
 # Contact
     - Will have a Name (required)
@@ -19,4 +20,4 @@ This repository provides full source code of a phonebook web app, allowing CRUD 
  
  
  ## Deploy in Heroku 
-     # URL-https://young-garden-45925.herokuapp.com/
+     # URL-[GitHub Pages](https://young-garden-45925.herokuapp.com/)
