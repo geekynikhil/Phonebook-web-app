@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  nav(class="navbar bg-info")
+    h6 RM-PHONEBOOK
+  div(class='contact_form appear' id="form" style="display:none")
+    form(action="/update/contact" id="contact" method="post")
+      input(type="text" name="id" value=data._id style="display:none")
+      div(class="form-group")
+        label Name : 
+        input(type="text" class="form-control" name='Name' value=data.Name placeholder="Full Name" required)
+      div(class="form-group")
+        label DOB : 
+        input(type='date' class="form-control" value=data.DOB name="DOB")
+      div(class="form-group")
+        label Mobile Number : 
+        br
+        input(type='text' class="form-control" pattern="[0-9]{10}" name='numbers' value=data.numbers[0] placeholder="xxxxxxxxxx" required)
+        span(class="material-icons form_icon" onclick="add_more_contact()") add_circle
+        div(id="add_contact_here")
+            -var a=1
+            while a++<(data.numbers).length
+                input(type='text' class="form-control" pattern="[0-9]{10}" id="closeN"+a name='numbers' value=data.numbers[a-1] placeholder="xxxxxxxxxx" required)
+                span(class="material-icons form_icon" onclick="remove_field(this,'closeN"+a+"')") close
+      div(class="form-group")
+        label Email : 
+        br
+        input(type='email' class="form-control" name='emails' value=data.emails[0] placeholder="abc@xyz" required)
+        span(class="material-icons form_icon" onclick="add_more_email()") add_circle
+        div(id="add_email_here")
+            -var a=1
+            while a++<(data.emails).length
+                input(type='email' class="form-control" id="closeE"+a name='emails' value=data.emails[a-1] placeholder="abc@xyz" required)
+                span(class="material-icons form_icon" onclick="remove_field(this,'closeE"+a+"')") close
+      button(type="submit" class='btn btn-danger') Update
+    div(class="Add")
+        a(href="/")
+            button(class="btn btn-dark effect rotate" id="fixed_button")
+                span(class="material-icons place" style="font-size:40px") add

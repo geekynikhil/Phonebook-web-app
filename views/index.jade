@@ -1,0 +1,96 @@
+extends layout
+
+block content
+  div(id="pageno" style="display:none") #{page}
+  div(id="length" style="display:none") #{len/4}
+  nav(class="navbar bg-info")
+    h6 RM-PHONEBOOK
+  div(class="container-sm" style="margin-top:50px;")
+      form(action="/search" method="post")
+        div(class="input-group mb-3")
+          input(class="text" class="form-control" name="search" placeholder="Search" style="box-sizing:unset !important")
+          div(class="input-group-append" style="cursor:pointer")
+            div(class="input-group-text")
+              button(type="submit" style="padding:0px;margin:0px;border:0px;background-color:transparent;box-sizing:unset !important;")
+                span(class="material-icons") search
+      if contact.length>0
+        -var x=0;
+        while x++<contact.length
+          div(class='card')
+            a(href="#demo"+x class="card-header clear-fix" style="cursor:pointer" data-toggle="collapse")
+              div(class="float-left")  
+                strong #{contact[x-1].Name}
+              div(class="float-right") 
+                  span(class="material-icons") keyboard_arrow_down
+            div(id="demo"+x class='card-body p-0 pl-3 collapse')
+              div(class="mb-3 mt-4")
+                strong DOB : 
+                span #{contact[x-1].DOB}
+              div(class="row")
+                div(class='col-sm-5')
+                  each item in contact[x-1].numbers
+                    div(class="contact mb-2") +91-#{item}
+                div(class="col-sm-7")
+                  each item in contact[x-1].emails
+                    div(class="email mb-2") #{item}
+              div(class="mt-2  clear-fix float-right")
+                a(href="/remove/contact/"+contact[x-1]._id class="btn btn-info btn-sm m-1") Remove
+                a(href="/edit/contact/"+contact[x-1]._id class="btn btn-danger text-white btn-sm m-2") Edit
+      else
+        h1(class="text-muted" style="text-align:center") NO CONTACTS
+      div(class='footer')
+        ul(class="pagination pagination justify-content-center")
+          li(class="page-item" id="pre")
+            a(class="page-link" href="#" onclick="previous(this)") <
+          -var a=0;
+          while a++<len/4
+            li(class="page-item" id="page"+a)
+              a(class="page-link" href="/?page="+a) #{a}
+          li(class="page-item" id="next")
+            a(class="page-link" href="#" onclick="next(this)") >
+      div(class="Add")
+        button(class="btn btn-dark effect" id="fixed_button" onclick="rotate(this)") 
+          span(class="material-icons place" style="font-size:40px") add
+  div(class='contact_form' id="form" style="display:none")
+    form(action="/add/contact" id="contact" method="post")
+      div(class="form-group")
+        label Name : 
+        input(type="text" class="form-control" name='Name' placeholder="Name" required)
+      div(class="form-group")
+        label DOB : 
+        input(type='date' class="form-control" name="DOB")
+      div(class="form-group")
+        label Mobile Number : 
+        br
+        input(type='text' class="form-control" pattern="[0-9]{10}" name='numbers' placeholder="+91 xxxxxxxxxx" required)
+        span(class="material-icons form_icon" onclick="add_more_contact()") add_circle
+        div(id="add_contact_here")
+      div(class="form-group")
+        label Email : 
+        br
+        input(type='email' class="form-control" name='emails' placeholder="abc@gmail.com" required)
+        span(class="material-icons form_icon" onclick="add_more_email()") add_circle
+        div(id="add_email_here")
+      button(type="submit" class='btn btn-danger'  onclick="validator()") Save 
+  if msg
+    div(id='msg' style='display:none') #{msg}
+    script.
+      setTimeout(function(){
+        var m=document.getElementById("msg").innerHTML;
+        window.alert(m);
+      },500);
+  script.
+    var p=document.getElementById('pageno').innerHTML;
+    var l=document.getElementById("length").innerHTML;
+    document.getElementById("page"+p).classList.add("active");
+    l=Math.ceil(parseFloat(l));
+    if(p==="1")
+      document.getElementById("pre").classList.add("disabled");
+    if(Number(p)===l)
+      document.getElementById("next").classList.add("disabled");
+
+    
+
+
+        
+      

@@ -1,0 +1,88 @@
+.email::before{
+    content: url("/images/email.png");
+    vertical-align: sub;
+    padding-right:8px;
+}
+.contact::before{
+    content: url("/images/call.png");
+    vertical-align: sub;
+    padding-right:8px;
+}
+.card{
+    font-size:0.9em;
+    font-weight: bold;
+}
+.card-header{
+    color:black !important;
+}
+.card-body{
+    background-color: rgb(230, 235, 236);
+}
+.footer{
+    width:100%;
+    margin-top:30px;
+}
+.Add{
+    z-index: 999;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+.Add button{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+    text-align: center;
+}
+.place{
+    position:relative;
+    right:8px;
+}
+.effect{
+    transition: transform .5s !important;
+}
+.rotate{
+    transform:rotate(-45deg);
+}
+.contact_form{
+    position:absolute;
+    top:0px;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;  
+    background-color:rgba(197, 194, 194,0.8) 
+}
+label{
+    font-weight: bold;
+}
+.contact_form form{
+    background-color: white;
+    border:2px solid black;
+    border-radius:10px;
+    padding:20px;
+    width:40%;
+}
+.appear{
+    display:flex !important;
+}
+input[name="numbers"], input[name="emails"]{
+    display:inline-block;
+    width:85%;
+}
+.form_icon{
+    font-size:32px !important;
+    vertical-align: sub;
+    position: relative;
+    top:5px;
+    cursor: pointer;
+}
+.active{
+    z-index:0;
+}
+@media only screen and (max-width:640px){
+    form{
+        width:90% !important;
+    }
+}
