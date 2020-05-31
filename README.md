@@ -20,4 +20,4 @@ This repository provides full source code of a phonebook web app, allowing CRUD 
  
  
  ## Deploy in Heroku 
-     # URL-[GitHub Pages](https://young-garden-45925.herokuapp.com/)
+     # URL-[GitHub Pages](https://young-garden-45925.herokuapp.com/).
